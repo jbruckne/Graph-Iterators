@@ -21,11 +21,22 @@ public class Main {
             System.out.print(bfs.next().toString() + " ");
 
         System.out.println("\n\nDepth First Search Tests");
-        System.out.println( "-------------------------");
+        System.out.println("-------------------------");
 
         Iterator<Object> dfs = new DepthFirstSearch(graph, 0);
         while (dfs.hasNext())
             System.out.print(dfs.next().toString() + " ");
+
+        System.out.println("\n\nBreak Tests");
+        System.out.println("-------------");
+
+        Iterator<Object> badSearch = new DepthFirstSearch(graph, 0);
+        try {
+            badSearch.remove();
+        } catch (UnsupportedOperationException e) {
+            System.out.println("Remove not supported");
+        }
+
 
         System.out.println("\n\nEnd of Tests");
     }
