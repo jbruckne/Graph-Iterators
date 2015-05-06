@@ -1,5 +1,6 @@
 package me.joebruckner;
 
+import java.util.EmptyStackException;
 import java.util.Iterator;
 
 public class Main {
@@ -30,11 +31,18 @@ public class Main {
         System.out.println("\n\nBreak Tests");
         System.out.println("-------------");
 
+        graph = new Graph();
         Iterator<Object> badSearch = new DepthFirstSearch(graph, 0);
         try {
             badSearch.remove();
         } catch (UnsupportedOperationException e) {
             System.out.println("Remove not supported");
+        }
+        try {
+            badSearch.next();
+            badSearch.next();
+        } catch (EmptyStackException e) {
+            System.out.println("No more nodes");
         }
 
 
