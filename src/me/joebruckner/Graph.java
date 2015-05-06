@@ -16,4 +16,9 @@ public class Graph {
         List<Object> neighbors = edges.get(node);
         return neighbors == null ? Collections.emptyList() : neighbors;
     }
+
+    public boolean hasEdge(Object from, Object to) {
+        List<Object> neighbors = edges.get(from);
+        return neighbors != null && neighbors.contains(to);
+    }
 }

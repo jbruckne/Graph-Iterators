@@ -28,25 +28,17 @@ public class DepthFirstSearch implements Iterator<Object> {
     }
 
     protected Object advance() {
-        if (stack.empty()) return null;
-
-        Object next = stack.peek();
-        if (visited.contains(next)) {
-            stack.pop();
-            //System.err.println("Moving up to " + stack.peek().toString());
-            return advance();
-        }
+        Object next = stack.pop();
+        if (visited.contains(next)) return advance();
 
         for (Object neighbor : graph.getNeighbors(next)) {
             if (visited.contains(neighbor)) continue;
-            //System.err.println("Moving to " + neighbor.toString());
+            stack.push(next);
             stack.push(neighbor);
             return advance();
         }
 
-        Object n = stack.pop();
-        //System.err.println("Visiting " + n.toString());
-        visited.add(n);
-        return n;
+        visited.add(next);
+        return next;
     }
 }
